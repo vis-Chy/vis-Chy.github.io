@@ -280,7 +280,6 @@
 
         //d3.voronoiTreemap(),必须基于固定格式的d3-hierarchy进行，且必须计算hierarchy,sum()作为权值
         hierarchy = d3.hierarchy(rootData).sum(function(d){ return d.weight; });
-        console.log(hierarchy);
         initData();
         initLayout(hierarchy);
         //define the tessellation
