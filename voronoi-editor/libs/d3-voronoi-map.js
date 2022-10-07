@@ -8,7 +8,7 @@
     /////// Inputs ///////
     this.growthChangesLength = DEFAULT_LENGTH;
     this.totalAvailableArea = NaN;
-
+    
     //begin: internals
     this.lastAreaError = NaN;
     this.lastGrowth = NaN;
@@ -28,10 +28,10 @@
     var initialWeight = 3;   // a magic number
     var weightDecrement = 1; // a magic number
     var minWeight = 1;
-
+    
     var weightedCount = initialWeight;
     var growthChangeWeights = [];
-
+    
     for (var i=0; i<length; i++) {
       growthChangeWeights.push(weightedCount);
       weightedCount -= weightDecrement;
@@ -60,7 +60,7 @@
     this.growthChangeWeights = generateGrowthChangeWeights(this.growthChangesLength);
     this.growthChangeWeightsSum = computeGrowthChangeWeightsSum(this.growthChangeWeights);
     this.totalAvailableArea = NaN;
-
+    
     return this;
   };
 
@@ -68,13 +68,13 @@
     this.lastAreaError = NaN;
     this.lastGrowth = NaN;
     this.growthChanges = [];
-
+    
     return this;
   };
 
   FlickeringMitigation.prototype.length = function (_) {
     if (!arguments.length) { return this.growthChangesLength; }
-
+    
     if (parseInt(_)>0) {
       this.growthChangesLength = Math.floor(parseInt(_));
       this.growthChangeWeights = generateGrowthChangeWeights(this.growthChangesLength);
@@ -87,7 +87,7 @@
 
   FlickeringMitigation.prototype.totalArea = function (_) {
     if (!arguments.length) { return this.totalAvailableArea; }
-
+    
     if (parseFloat(_)>0) {
       this.totalAvailableArea = parseFloat(_);
     } else {
@@ -130,11 +130,9 @@
 
     ratio = weightedChangeCount/this.growthChangeWeightsSum;
 
-    /*
     if (ratio>0) {
-      console.log("flickering mitigation ratio: "+Math.floor(ratio*1000)/1000);
+    //   console.log("flickering mitigation ratio: "+Math.floor(ratio*1000)/1000);
     }
-    */
 
     return ratio;
   };
@@ -367,7 +365,7 @@
     //end: constants
 
     /////// Inputs ///////
-    var weight = function(d) {
+    var weight = function (d) {
       return d.weight;
     }; // accessor to the weight
     var convergenceRatio = DEFAULT_CONVERGENCE_RATIO; // targeted allowed error ratio; default 0.01 stops computation when cell areas error <= 1% clipping polygon's area
@@ -380,7 +378,6 @@
     //begin: internals
     var weightedVoronoi = d3WeightedVoronoi.weightedVoronoi(),
       flickeringMitigation = new FlickeringMitigation(),
-      shouldInitialize = true, // should initialize due to changes via APIs
       siteCount, // number of sites
       totalArea, // area of the clipping polygon
       areaErrorTreshold, // targeted allowed area error (= totalArea * convergenceRatio); below this treshold, map is considered obtained and computation stops
@@ -418,37 +415,37 @@
     simulation = {
       tick: tick,
 
-      restart: function() {
+      restart: function () {
         stepper.restart(step);
         return simulation;
       },
 
-      stop: function() {
+      stop: function () {
         stepper.stop();
         return simulation;
       },
 
-      weight: function(_) {
+      weight: function (_) {
         if (!arguments.length) {
           return weight;
         }
 
         weight = _;
-        shouldInitialize = true;
+        initializeSimulation();
         return simulation;
       },
 
-      convergenceRatio: function(_) {
+      convergenceRatio: function (_) {
         if (!arguments.length) {
           return convergenceRatio;
         }
 
         convergenceRatio = _;
-        shouldInitialize = true;
+        initializeSimulation();
         return simulation;
       },
 
-      maxIterationCount: function(_) {
+      maxIterationCount: function (_) {
         if (!arguments.length) {
           return maxIterationCount;
         }
@@ -457,80 +454,77 @@
         return simulation;
       },
 
-      minWeightRatio: function(_) {
+      minWeightRatio: function (_) {
         if (!arguments.length) {
           return minWeightRatio;
         }
 
         minWeightRatio = _;
-        shouldInitialize = true;
+        initializeSimulation();
         return simulation;
       },
 
-      clip: function(_) {
+      clip: function (_) {
         if (!arguments.length) {
           return weightedVoronoi.clip();
         }
 
         weightedVoronoi.clip(_);
-        shouldInitialize = true;
+        initializeSimulation();
         return simulation;
       },
 
-      extent: function(_) {
+      extent: function (_) {
         if (!arguments.length) {
           return weightedVoronoi.extent();
         }
 
         weightedVoronoi.extent(_);
-        shouldInitialize = true;
+        initializeSimulation();
         return simulation;
       },
 
-      size: function(_) {
+      size: function (_) {
         if (!arguments.length) {
           return weightedVoronoi.size();
         }
 
         weightedVoronoi.size(_);
-        shouldInitialize = true;
+        initializeSimulation();
         return simulation;
       },
 
-      prng: function(_) {
+      prng: function (_) {
         if (!arguments.length) {
           return prng;
         }
 
         prng = _;
-        shouldInitialize = true;
+        initializeSimulation();
         return simulation;
       },
 
-      initialPosition: function(_) {
+      initialPosition: function (_) {
         if (!arguments.length) {
           return initialPosition;
         }
 
         initialPosition = _;
-        shouldInitialize = true;
+        initializeSimulation();
         return simulation;
       },
 
-      initialWeight: function(_) {
+      initialWeight: function (_) {
         if (!arguments.length) {
           return initialWeight;
         }
 
         initialWeight = _;
-        shouldInitialize = true;
+        initializeSimulation();
         return simulation;
       },
 
-      state: function() {
-        if (shouldInitialize) {
-          initializeSimulation();
-        }
+      state: function () {
         return {
           ended: ended,
           iterationCount: iterationCount,
@@ -539,7 +533,7 @@
         };
       },
 
-      on: function(name, _) {
+      on: function (name, _) {
         if (arguments.length === 1) {
           return event.on(name);
         }
@@ -567,9 +561,6 @@
     //begin: algorithm used at each iteration
     function tick() {
       if (!ended) {
-        if (shouldInitialize) {
-          initializeSimulation();
-        }
         polygons = adapt(polygons, flickeringMitigation.ratio());
         iterationCount++;
         areaError = computeAreaError(polygons);
@@ -594,19 +585,20 @@
       iterationCount = 0;
       converged = false;
       polygons = initialize(data, simulation);
+    //   if(polygons.length !== siteCount) console.log("Lost sites:", siteCount, polygons.length) //Addition Nadieh Bremer
+    //   siteCount = polygons.length; //Addition Nadieh Bremer
       ended = false;
-      shouldInitialize = false;
     }
 
     function initialize(data, simulation) {
-      var maxWeight = data.reduce(function(max, d) {
+      var maxWeight = data.reduce(function (max, d) {
           return Math.max(max, weight(d));
         }, -Infinity),
         minAllowedWeight = maxWeight * minWeightRatio;
       var weights, mapPoints;
 
       //begin: extract weights
-      weights = data.map(function(d, i, arr) {
+      weights = data.map(function (d, i, arr) {
         return {
           index: i,
           weight: Math.max(weight(d), minAllowedWeight),
@@ -624,12 +616,12 @@
     }
 
     function createMapPoints(basePoints, simulation) {
-      var totalWeight = basePoints.reduce(function(acc, bp) {
+      var totalWeight = basePoints.reduce(function (acc, bp) {
         return (acc += bp.weight);
       }, 0);
       var initialPosition;
 
-      return basePoints.map(function(bp, i, bps) {
+      return basePoints.map(function (bp, i, bps) {
         initialPosition = bp.initialPosition;
 
         if (!d3Polygon.polygonContains(weightedVoronoi.clip(), initialPosition)) {
@@ -651,7 +643,7 @@
       var adaptedMapPoints;
 
       adaptPositions(polygons, flickeringMitigationRatio);
-      adaptedMapPoints = polygons.map(function(p) {
+      adaptedMapPoints = polygons.map(function (p) {
         return p.site.originalObject;
       });
       polygons = weightedVoronoi(adaptedMapPoints);
@@ -661,7 +653,7 @@
       }
 
       adaptWeights(polygons, flickeringMitigationRatio);
-      adaptedMapPoints = polygons.map(function(p) {
+      adaptedMapPoints = polygons.map(function (p) {
         return p.site.originalObject;
       });
       polygons = weightedVoronoi(adaptedMapPoints);
@@ -837,6 +829,7 @@
       }
     }
 
+    initializeSimulation();
     return simulation;
   }
 
