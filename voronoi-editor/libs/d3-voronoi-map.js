@@ -165,11 +165,11 @@
         updateInternals();
       }
 
-      x = minX + dx * voronoiMapSimulation.prng()();
-      y = minY + dy * voronoiMapSimulation.prng()();
+      x = minX + dx * voronoiMapSimulation.prng();
+      y = minY + dy * voronoiMapSimulation.prng();
       while (!d3Polygon.polygonContains(clippingPolygon, [x, y])) {
-        x = minX + dx * voronoiMapSimulation.prng()();
-        y = minY + dy * voronoiMapSimulation.prng()();
+        x = minX + dx * voronoiMapSimulation.prng();
+        y = minY + dy * voronoiMapSimulation.prng();
       }
       return [x, y];
     };
