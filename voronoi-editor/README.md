@@ -1,6 +1,6 @@
 # Voronoi 编辑器
 
-#### /voronoi.html
+### /voronoi.html
 
 可编辑基础voronoi图。目前支持本地上传csv数据，数据表构建格式如下：
 
@@ -18,7 +18,7 @@
 
 由于基于[d3-voronoi-treemap](https://github.com/Kcnarf/d3-voronoi-treemap)编写，层次voronoi的生成严格依赖于[d3-hierarchy](https://github.com/d3/d3-hierarchy#hierarchy)，因此json、csv文件需严格按照标准格式构造。
 
-###### json文件格式如下：
+##### json文件格式如下：
 
 ```javascript
 {
