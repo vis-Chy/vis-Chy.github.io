@@ -12,13 +12,13 @@
 
 **color**字段为自选字段，可指定颜色，颜色描述需采用16进制颜色代码。
 
-#### /voronoiHierarchy.html
+### /voronoiHierarchy.html
 
 可编辑多层级voronoi treemap。目前支持本地上传json数据、csv数据。
 
 由于基于[d3-voronoi-treemap](https://github.com/Kcnarf/d3-voronoi-treemap)编写，层次voronoi的生成严格依赖于[d3-hierarchy](https://github.com/d3/d3-hierarchy#hierarchy)，因此json、csv文件需严格按照标准格式构造。
 
-##### json文件格式如下：
+###### json文件格式如下：
 
 ```javascript
 {
@@ -62,6 +62,9 @@
 
 三个字段都为必须字段，name记录唯一名称；weight记录数据值，只有叶子节点需要有数据值；parent记录该节点的父级名称。表中所有节点最终需收敛于唯一一个父级节点。
 
+### Bug
+1. 无法在Firefox中支持mouseover鼠标交互；
+2. 无法在Firefox中支持Upload file。
 
 
 ------
