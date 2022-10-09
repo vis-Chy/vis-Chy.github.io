@@ -336,7 +336,7 @@
         simulation = d3.voronoiMapSimulation(value)
           .clip(clipingPolygon)
           .weight((d)=>d.value)
-        	.initialPosition(d3.voronoiMapInitialPositionPie().startAngle(-Math.PI*3/5))
+        	//.initialPosition(d3.voronoiMapInitialPositionPie().startAngle(-Math.PI*3/5))
         	.on("tick", function() {
           	// function called after each iteration of computation
           	// called only in simulation mode, not in static mode (see below)
