@@ -3,8 +3,9 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="" href="favicon.ico">
     <title>Make a voronoi map</title>
-    <meta name="description" content="d3-voronoi-treemap plugin">
+    <meta name="description" content="">
     <script src="libs/d3.v6.min.js" charset="utf-8"></script>
     <script src="libs/d3-weighted-voronoi.js"></script>
     <script src="libs/d3-voronoi-map.js"></script>
@@ -63,7 +64,7 @@
       
       .hoverer {
         fill: transparent;
-        stroke: #000000;
+        stroke: rgb(255, 255, 255);
         stroke-width: 0px;
       }
       
@@ -336,7 +337,7 @@
         simulation = d3.voronoiMapSimulation(value)
           .clip(clipingPolygon)
           .weight((d)=>d.value)
-        	//.initialPosition(d3.voronoiMapInitialPositionPie().startAngle(-Math.PI*3/5))
+        	// .initialPosition(d3.voronoiMapInitialPositionPie().startAngle(-Math.PI*3/5))
         	.on("tick", function() {
           	// function called after each iteration of computation
           	// called only in simulation mode, not in static mode (see below)
