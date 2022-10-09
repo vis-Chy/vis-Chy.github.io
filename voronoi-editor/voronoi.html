@@ -241,7 +241,6 @@
       window.onload = function() { 
         //默认加载
         d3.csv("costOfBeingFat.csv").then(function(rootData) {
-          rootData.forEach(function(d) {d.value = parseFloat(d.value);});
           draw(rootData,true);
         });
 
@@ -308,7 +307,9 @@
       };
 
       //主函数，所有运算都发生于此
-      function draw(data,isSimulation) {
+      function draw(rootData,isSimulation) {
+        rootData.forEach(function(d) {d.value = parseFloat(d.value);});
+        data = rootData;
         switch (loadtype) {
             case "json":
               // drawJson(data)
@@ -319,12 +320,10 @@
           }
       }
 
-      function drawJson(rootData, isSimulation) {
-        data = rootData;
+      function drawJson(data, isSimulation) {
       }
 
-      function drawCsv(rootData, isSimulation) {
-        data = rootData;
+      function drawCsv(data, isSimulation) {
         totalValue = 0;
         data.forEach(function (d) {
           totalValue += d.value;
