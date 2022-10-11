@@ -214,7 +214,9 @@
           saveSvgAsPng(document.getElementsByTagName("svg")[0], "voronoi-map.png");
         },
         SaveSvg : function(){
+          document.getElementsByClassName("hoverers")[0].style.display = "none"
           saveSvg(document.getElementsByTagName("svg")[0], "voronoi-map.svg")
+          document.getElementsByClassName("hoverers")[0].style.display = "block"
         },
       };
 
