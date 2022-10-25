@@ -62,9 +62,10 @@
 
 三个字段都为必须字段，name记录唯一名称；weight记录数据值，只有叶子节点需要有数据值；parent记录该节点的父级名称。表中所有节点最终需收敛于唯一一个父级节点。
 
-### Bug
+### Bugs
 1. 无法在Firefox中支持mouseover鼠标交互；
-2. 无法在Firefox中支持Upload file。
+2. 无法在Firefox中支持Upload file；
+3. 导出svg被hover图层覆盖；
 
 
 ------
