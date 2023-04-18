@@ -1,0 +1,137 @@
+#title {
+    position: fixed;
+    margin:auto;
+    top:50px;
+    text-align: center;
+    width:100%;
+    letter-spacing: 4px;
+    font-weight: 700;
+    font-size: x-large;
+  }
+  #instructions{
+    position: fixed;
+    top: 25px;
+    left: 30px;
+    width: 250px;
+    height: 50px;
+    font-size: 14px;
+  }
+  #attention{
+    position: relative;
+    color: black;
+    margin-bottom: 3px;
+  }
+  #alarmDialog{
+    position: fixed;
+    bottom: 20px;
+    right: 15px;
+    width: 400px;
+    height: 200px;
+    transition: all 0.3s ease-in-out;
+    display: none;
+  }
+  #alarm{
+    margin: 10px 12px;
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .dialogHead{
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 14px;
+    height: fit-content;
+  }
+  #alarm-items{
+    margin: 10px 10px;
+    text-align: center;
+    font-size: 12px;
+    overflow-y:auto;
+  }
+  #alarm-items table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  #alarm-items th {
+    color: rgb(174, 174, 174);
+  }
+  #alarm-items td {
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    border-top: 1px solid rgb(174, 174, 174);
+  }
+  #loadfileDialog{
+    position: fixed;
+    margin:auto;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    width:540px;
+    height:340px;
+    background-color: rgba(250, 250, 250, 0.95);
+    display: none;
+  }
+  #dialogContent{
+    margin: 30px 40px;
+    line-height: 120%;
+    font-size: 14px;
+  }
+  .step{
+    padding-bottom: 20px;
+  }
+  .step-label{
+    margin-bottom: 10px;
+  }
+  .selectbox-position{
+    position: absolute;
+    right: 45px;
+    width: 80px;
+  }
+  #nameSelector{
+    display: none;
+  }
+  #valueSelector{
+    display: none;
+  }
+  #buttonContainer{
+    width: 100%;
+    height: 30px;
+    position: absolute;
+    bottom: 35px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+  }
+  #confirmButton{
+    /* background-color: blueviolet; */
+  }
+  #cancelButton{
+    /* background-color: rgb(182, 182, 182); */
+  }
+  .button{
+    width: 150px;
+    /* height: 30px; */
+    margin: 0 20px;
+  }
+  /* 定义滚动条样式 */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  /*定义滚动条轨道 内阴影+圆角*/
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 0px rgba(180, 180, 180, .5);
+    border-radius: 10px;
+  }
+  /*定义滑块 内阴影+圆角*/
+  ::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 0px rgba(180, 180, 180, .5); 
+  }
