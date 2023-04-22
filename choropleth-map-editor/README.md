@@ -2,7 +2,7 @@
 
 推荐使用Chrome浏览器，暂未考虑其它浏览器的兼容问题。
 
-[试用地址](https://vis-chy.github.io/choropleth-map-editor)
+[试用地址](https://vis-chy.github.io/choropleth-map-editor/index.html)
 
 ##### 功能：
 
