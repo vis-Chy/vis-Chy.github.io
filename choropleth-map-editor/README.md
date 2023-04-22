@@ -40,6 +40,7 @@
 
 可对照[行政区名称及编码.xlsx](https://github.com/vis-Chy/vis-Chy.github.io/tree/main/choropleth-map-editor)查看。
 
+4、如碰到下载svg无法打开问题，请尝试在文本编辑器中打开svg，删除<style type="text/css"></style>中所有样式代码，保存即可。
 
 
 ##### 后续有望更新：
