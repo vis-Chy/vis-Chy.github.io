@@ -4,7 +4,6 @@
     $.ajax({
         async: false,
         type: 'GET',
-        contentType: "application/json",
         url: [
         'https://geo.datav.aliyun.com/areas_v3/bound/geojson?code=100000',
       ],
@@ -17,7 +16,6 @@
     $.ajax({
         async: false,
         type: 'GET',
-        contentType: "application/json",
         url: [
         'https://geo.datav.aliyun.com/areas_v3/bound/geojson?code=100000_full',
       ],
@@ -43,7 +41,6 @@
                 $.ajax({
                   async: false,
                   type: 'GET',
-                  contentType: "application/json",
                   url: [
                     `https://geo.datav.aliyun.com/areas_v3/bound/geojson?code=${e.code}`,
                   ],
@@ -61,7 +58,6 @@
                 $.ajax({
                   async: false,
                   type: 'GET',
-                  contentType: "application/json",
                   url: [
                     `https://geo.datav.aliyun.com/areas_v3/bound/geojson?code=${e.code}_full`,
                   ],
