@@ -1,5 +1,7 @@
 # Voronoi 编辑器
 
+[试用地址](https://vis-chy.github.io/voronoi-editor)
+
 ### /voronoi.html
 
 可编辑基础voronoi图。目前支持本地上传csv数据，数据表构建格式如下：
