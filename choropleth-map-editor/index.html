@@ -145,10 +145,10 @@
       
       //Upload面板交互变量city
       var mapunit; 
-      var areaGeojson = geoCNPool[2];
+      var areaGeojson = geoCNPool[1];
       var methodIndex="number";         //数值类型，控制drawValueMap，还是drawClassMap
-      var nameKeySelected = "city_code";     //nameSelect选中的用来做匹配的字段名称
-      var valueKeySelected = 'aqi';        //valueSelect选中的用来提供统计数据的字段
+      var nameKeySelected = "地区";     //nameSelect选中的用来做匹配的字段名称
+      var valueKeySelected = '人口数（万人）';        //valueSelect选中的用来提供统计数据的字段
       var boundaryStatus = [true,false,false];//[国界，省界，市界]
       var loaded = false;
       var inputData, confirmedInputData;
@@ -162,8 +162,8 @@
             loaded = false;
             inputData = undefined;
         },
-        titleName: "中国2021年AQI分布（数据取整）",//标题
-        dataUnit:'AQI',
+        titleName: "第七次人口普查中国各省人口分布",//标题
+        dataUnit:'万人',
         scaleFac:0.95*height,
         projectionType:'Albers China',
         labelSwitch: 'No label',
@@ -272,7 +272,7 @@
 
       window.onload = function() { 
         //默认加载
-        d3.csv("china-aqi2021.csv").then(function(rootData) {
+        d3.csv("example-china-pop2020.csv").then(function(rootData) {
           document.getElementById('title').innerHTML = options.titleName;
           confirmedInputData = [].concat(rootData);
           draw(confirmedInputData,nameKeySelected,valueKeySelected,svg,areaGeojson);
